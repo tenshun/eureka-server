@@ -1,5 +1,10 @@
 server:
-  port: 8010
+  port: ${PORT:8761}
+
+spring:
+  application:
+    name: discovery-server
+
 
 eureka:
   instance:
@@ -7,5 +12,5 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
-    server:
-      waitTimeInMsWhenSyncEmpty: 0
+    serviceUrl:
+          defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
